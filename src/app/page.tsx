@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import HomerAlbum from "../../public/HomerAlbum.jpg";
 import MineMusicPhoto from "../../public/Mine.png";
 import EminemDaily from "../../public/Eminem.png";
@@ -89,9 +89,16 @@ export default function Home() {
                 .fill(0)
                 .map((_, index) => {
                   return (
-                    <div className="flex gap-2 p-2 hover:bg-gray-800 rounded-md cursor-pointer">
+                    <div
+                      key={index}
+                      className="flex gap-2 p-2 hover:bg-gray-800 rounded-md cursor-pointer"
+                    >
                       <div className="basis-12 grow-0 shrink-0 h-12 flex-0 rounded-sm overflow-hidden">
-                        <img className="object-cover" src={HomerAlbum.src} />
+                        <Image
+                          className="object-cover"
+                          src={HomerAlbum.src}
+                          alt="Homer Photo Album Music"
+                        />
                       </div>
                       <div className="flex justify-between items-center w-full">
                         <div className="flex flex-col justify-between">
@@ -135,10 +142,16 @@ export default function Home() {
             <div className="grid grid-cols-albuns gap-6">
               {Array(6)
                 .fill("x")
-                .map((_, __) => (
-                  <div className="flex h-auto w-full rounded-md overflow-hidden cursor-pointer bg-slate-800 hover:bg-slate-700 transition-colors">
+                .map((_, index) => (
+                  <div
+                    key={index}
+                    className="flex h-auto w-full rounded-md overflow-hidden cursor-pointer bg-slate-800 hover:bg-slate-700 transition-colors"
+                  >
                     <div className="basis-20 grow-0 shrink-0 bg-white">
-                      <img src={HomerAlbum.src} />
+                      <Image
+                        src={HomerAlbum.src}
+                        alt="Homer Photo Album Music"
+                      />
                     </div>
                     <div className="flex items-center justify-between flex-1  px-4 py-4">
                       <p className="text-white">Lucas + Lucas + Edson</p>
@@ -153,9 +166,9 @@ export default function Home() {
             <section className="grid gap-7">
               {Array(6)
                 .fill("x")
-                .map(() => {
+                .map((_, index) => {
                   return (
-                    <section className="flex flex-col gap- jus">
+                    <section key={index} className="flex flex-col gap- jus">
                       <div className="flex justify-between w-full items-center">
                         <p className="text-white text-2xl font-bold">
                           Feito para Edson Vanderlei
@@ -171,7 +184,10 @@ export default function Home() {
                             return (
                               <div className="bg-zinc-900 p-3 rounded-lg grid gap-4 max-w-widthPhoto">
                                 <div className=" h-40 rounded-xl overflow-hidden bg-white grow-0 shrink-0">
-                                  <img src={EminemDaily.src} alt="" />
+                                  <Image
+                                    src={EminemDaily.src}
+                                    alt="Eminem Photo to Daily Mix"
+                                  />
                                 </div>
                                 <p className="text-white font-bold text-base">
                                   Daily Mix 1
