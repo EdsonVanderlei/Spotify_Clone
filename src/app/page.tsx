@@ -180,9 +180,12 @@ export default function Home() {
                       <div className="flex justify-between gap-3">
                         {Array(7)
                           .fill("x")
-                          .map(() => {
+                          .map((_, index) => {
                             return (
-                              <div className="bg-zinc-900 p-3 rounded-lg grid gap-4 max-w-widthPhoto">
+                              <div
+                                key={index}
+                                className="bg-zinc-900 p-3 rounded-lg grid gap-4 max-w-widthPhoto"
+                              >
                                 <div className=" h-40 rounded-xl overflow-hidden bg-white grow-0 shrink-0">
                                   <Image
                                     src={EminemDaily.src}
@@ -209,7 +212,7 @@ export default function Home() {
       <footer className="h-auto p-3 flex justify-between items-center w-full px-5">
         <div className="flex items-center gap-3 flex-1">
           <div className="basis-12 grow-0 shrink-0 h-12 flex-0 rounded-sm bg-white">
-            <img src={MineMusicPhoto.src} alt="Mine Mine Mine Music !" />
+            <Image src={MineMusicPhoto.src} alt="Mine Mine Mine Music !" />
           </div>
           <div className="flex flex-col items-start">
             <p className="text-sm text-white font-semibold whitespace-nowrap ">
