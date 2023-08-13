@@ -1,113 +1,249 @@
-import Image from 'next/image'
+"use client";
+
+import HomerAlbum from "../../public/HomerAlbum.jpg";
+import MineMusicPhoto from "../../public/Mine.png";
+import EminemDaily from "../../public/Eminem.png";
+import { GoHome } from "react-icons/go";
+import { FiSearch } from "react-icons/fi";
+import {
+  BsFillVolumeUpFill,
+  BsPauseCircleFill,
+  BsSoundwave,
+} from "react-icons/bs";
+import { LuLibrary } from "react-icons/lu";
+import { LiaRandomSolid } from "react-icons/lia";
+import { TbMicrophone2 } from "react-icons/tb";
+import { RiMenu4Fill, RiRepeatLine } from "react-icons/ri";
+import { FaComputer } from "react-icons/fa6";
+import {
+  AiFillPauseCircle,
+  AiOutlinePlus,
+  AiOutlineArrowRight,
+  AiFillHeart,
+  AiOutlinePlaySquare,
+  AiFillStepBackward,
+  AiFillStepForward,
+  AiOutlineExpandAlt,
+} from "react-icons/ai";
+import {
+  IoMdArrowDropdown,
+  IoIosArrowBack,
+  IoIosArrowForward,
+} from "react-icons/io";
+import { useState } from "react";
 
 export default function Home() {
+  const [navBar, setNavBar] = useState(false);
+
+  const handleScroll = (event: React.UIEvent<HTMLDivElement, UIEvent>) => {
+    const { scrollTop } = event.currentTarget;
+    if (scrollTop > 400 && !navBar) {
+      setNavBar(true);
+    } else if (scrollTop < 400 && navBar) {
+      setNavBar(false);
+    }
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="flex flex-col bg-black h-screen w-full">
+      <section className="flex gap-2 flex-1 p-3">
+        <aside className="flex flex-col gap-2 w-auto ">
+          <nav className="flex flex-col gap-1 p-4 bg-zinc-900 rounded-lg text-gray-400 font-bold">
+            <a className="flex gap-4 p-1 cursor-pointer items-center">
+              <GoHome size={24} /> Início
+            </a>
+            <a className="flex gap-4 p-1 cursor-pointer items-center">
+              <FiSearch size={24} />
+              Buscar
+            </a>
+          </nav>
+          <nav className="flex flex-col gap-3  flex-1 bg-zinc-900 rounded-lg p-4 ">
+            <div className="flex justify-between text-gray-400 font-bold mb-6 px-2">
+              <p className="flex items-center gap-2">
+                <LuLibrary size={24} /> Sua Biblioteca
+              </p>
+              <div className="flex gap-4">
+                <AiOutlinePlus className="cursor-pointer" size={20} />
+                <AiOutlineArrowRight className="cursor-pointer" size={20} />
+              </div>
+            </div>
+            <div className="flex gap-2 items-start text-white text-sm font-semibold">
+              <p className="rounded-2xl px-3 py-1 bg-zinc-700 whitespace-nowrap cursor-pointer">
+                Playlists
+              </p>
+              <p className="rounded-2xl px-3 py-1  bg-zinc-700 whitespace-nowrap cursor-pointer">
+                Podcasts e programas
+              </p>
+              <p className="rounded-2xl px-3 py-1 bg-zinc-700 whitespace-nowrap cursor-pointer">
+                Álbuns
+              </p>
+            </div>
+            <div className="flex justify-between items-center text-gray-400  px-2">
+              <FiSearch size={18} />
+              <p className="text-sm flex items-center gap-2 cursor-pointer">
+                Recentes <IoMdArrowDropdown size={20} />
+              </p>
+            </div>
+            <div className="">
+              {Array(5)
+                .fill(0)
+                .map((_, index) => {
+                  return (
+                    <div className="flex gap-2 p-2 hover:bg-gray-800 rounded-md cursor-pointer">
+                      <div className="basis-12 grow-0 shrink-0 h-12 flex-0 rounded-sm overflow-hidden">
+                        <img className="object-cover" src={HomerAlbum.src} />
+                      </div>
+                      <div className="flex justify-between items-center w-full">
+                        <div className="flex flex-col justify-between">
+                          <p className="text-white">Lucas + Lucas + Edson</p>
+                          <p className="text-zinc-700 text-sm">
+                            Playlist spotify
+                          </p>
+                        </div>
+                        <BsSoundwave className="text-green-500" size={24} />
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </nav>
+        </aside>
+        <div
+          onScroll={(e) => handleScroll(e)}
+          className="flex-1 flex flex-col gap-5 bg-gray-900 rounded-lg  "
+        >
+          <div
+            className={`flex justify-between items-center sticky top-0 p-5 ${
+              navBar ? "bg-slate-950" : "bg-transparent"
+            }`}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <div className="flex items-center gap-3 flex-1 ">
+              <div className="bg-black cursor-pointer flex items-center justify-center rounded-full basis-9 h-9 grow-0 shrink-0">
+                <IoIosArrowBack className="text-white text-xl " />
+              </div>
+              <div className="bg-black cursor-pointer flex items-center justify-center rounded-full basis-9 h-9 grow-0 shrink-0">
+                <IoIosArrowForward className="text-white text-xl " />
+              </div>
+            </div>
+            <div className="flex items-center gap-3 flex-1 justify-end">
+              <div className="basis-6 grow-0 shrink-0 h-6 rounded-full bg-white"></div>
+              <div className="basis-6 grow-0 shrink-0 h-6 rounded-full bg-white"></div>
+            </div>
+          </div>
+          <section className="p-5 grid gap-5 h-[calc(100vh-200px)] overflow-y-auto">
+            <p className="text-3xl text-white font-bold">Boa noite</p>
+            <div className="grid grid-cols-albuns gap-6">
+              {Array(6)
+                .fill("x")
+                .map((_, __) => (
+                  <div className="flex h-auto w-full rounded-md overflow-hidden cursor-pointer bg-slate-800 hover:bg-slate-700 transition-colors">
+                    <div className="basis-20 grow-0 shrink-0 bg-white">
+                      <img src={HomerAlbum.src} />
+                    </div>
+                    <div className="flex items-center justify-between flex-1  px-4 py-4">
+                      <p className="text-white">Lucas + Lucas + Edson</p>
+                      <AiFillPauseCircle
+                        size={48}
+                        className="text-green-black"
+                      />
+                    </div>
+                  </div>
+                ))}
+            </div>
+            <section className="grid gap-7">
+              {Array(6)
+                .fill("x")
+                .map(() => {
+                  return (
+                    <section className="flex flex-col gap- jus">
+                      <div className="flex justify-between w-full items-center">
+                        <p className="text-white text-2xl font-bold">
+                          Feito para Edson Vanderlei
+                        </p>
+                        <p className="text-sm text-zinc-500 font-bold ">
+                          Mostrar tudo
+                        </p>
+                      </div>
+                      <div className="flex justify-between gap-3">
+                        {Array(7)
+                          .fill("x")
+                          .map(() => {
+                            return (
+                              <div className="bg-zinc-900 p-3 rounded-lg grid gap-4 max-w-widthPhoto">
+                                <div className=" h-40 rounded-xl overflow-hidden bg-white grow-0 shrink-0">
+                                  <img src={EminemDaily.src} alt="" />
+                                </div>
+                                <p className="text-white font-bold text-base">
+                                  Daily Mix 1
+                                </p>
+                                <p className="text-zinc-500 text-sm font-semibold">
+                                  Eminem, Travis Scott, Metro Boomin e mais
+                                </p>
+                              </div>
+                            );
+                          })}
+                      </div>
+                    </section>
+                  );
+                })}
+            </section>
+          </section>
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      </section>
+      <footer className="h-auto p-3 flex justify-between items-center w-full px-5">
+        <div className="flex items-center gap-3 flex-1">
+          <div className="basis-12 grow-0 shrink-0 h-12 flex-0 rounded-sm bg-white">
+            <img src={MineMusicPhoto.src} alt="Mine Mine Mine Music !" />
+          </div>
+          <div className="flex flex-col items-start">
+            <p className="text-sm text-white font-semibold whitespace-nowrap ">
+              Mine Mine Mine !
+            </p>
+            <p className="text-xs text-zinc-700">Wind Rose</p>
+          </div>
+          <AiFillHeart
+            className="text-green-500 basis-5 shrink-0 grow-0 mx-4"
+            size={20}
+          />
+        </div>
+        <div className="flex flex-col justify-center items-center gap-2 flex-1">
+          <div className="flex items-center gap-4 text-white text-xl">
+            <LiaRandomSolid className="cursor-pointer" />
+            <AiFillStepBackward className="cursor-pointer" />
+            <BsPauseCircleFill className="text-3xl cursor-pointer" />
+            <AiFillStepForward className="cursor-pointer" />
+            <RiRepeatLine className="cursor-pointer" />
+          </div>
+          <div className="flex items-center gap-2">
+            <p className="text-white text-xs font-semibold">0:00</p>
+            <div className="w-[600px] bg-zinc-500 h-1 rounded-full">
+              <div
+                className="bg-white h-full rounded-full"
+                style={{ width: "50%" }}
+              ></div>
+            </div>
+            <p className="text-xs text-zinc-500 font-semibold">0:00</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 justify-end text-white text-lg flex-1">
+          <AiOutlinePlaySquare className="cursor-pointer" />
+          <TbMicrophone2 className="cursor-pointer" />
+          <RiMenu4Fill className="cursor-pointer" />
+          <FaComputer className="cursor-pointer" />
+          <div className="flex items-center gap-2">
+            <BsFillVolumeUpFill className="cursor-pointer" />
+            <div className="w-20 h-1 rounded-full bg-zinc-700">
+              <div
+                className="bg-white flex justify-end items-center h-full rounded-full cursor-pointer "
+                style={{ width: "50%" }}
+              >
+                <div className="w-3 h-3 rounded-full bg-white"></div>
+              </div>
+            </div>
+          </div>
+          <AiOutlineExpandAlt className="cursor-pointer" />
+        </div>
+      </footer>
     </main>
-  )
+  );
 }
