@@ -57,7 +57,7 @@ export default function Home() {
               Buscar
             </a>
           </nav>
-          <nav className="flex flex-col gap-3  flex-1 bg-zinc-900 rounded-lg p-4 ">
+          <nav className="flex flex-col gap-3  flex-1 bg-zinc-900 rounded-lg p-4  w-full">
             <div className="flex justify-between text-gray-400 font-bold mb-6 px-2">
               <p className="flex items-center gap-2">
                 <LuLibrary size={24} /> Sua Biblioteca
@@ -84,25 +84,27 @@ export default function Home() {
                 Recentes <IoMdArrowDropdown size={20} />
               </p>
             </div>
-            <div className="">
+            <nav className="">
               {Array(5)
                 .fill(0)
                 .map((_, index) => {
                   return (
                     <div
                       key={index}
-                      className="flex gap-2 p-2 hover:bg-gray-800 rounded-md cursor-pointer"
+                      className="flex gap-2 px-3 py-2 hover:bg-gray-800 rounded-md cursor-pointer w-full"
                     >
-                      <div className="basis-12 grow-0 shrink-0 h-12 flex-0 rounded-sm overflow-hidden">
+                      <div className="basis-12 grow-0 shrink-0 h-12 flex-0 rounded-sm overflow-hidden relative">
                         <Image
-                          className="object-cover"
+                          fill={true}
                           src={HomerAlbum.src}
                           alt="Homer Photo Album Music"
                         />
                       </div>
-                      <div className="flex justify-between items-center w-full">
-                        <div className="flex flex-col justify-between">
-                          <p className="text-white">Lucas + Lucas + Edson</p>
+                      <div className="flex justify-between items-center w-full ">
+                        <div className="flex flex-col ">
+                          <p className="text-white whitespace-nowrap">
+                            Lucas + Lucas + Edson
+                          </p>
                           <p className="text-zinc-700 text-sm">
                             Playlist spotify
                           </p>
@@ -112,7 +114,7 @@ export default function Home() {
                     </div>
                   );
                 })}
-            </div>
+            </nav>
           </nav>
         </aside>
         <div
@@ -145,10 +147,11 @@ export default function Home() {
                 .map((_, index) => (
                   <div
                     key={index}
-                    className="flex h-auto w-full rounded-md overflow-hidden cursor-pointer bg-slate-800 hover:bg-slate-700 transition-colors"
+                    className="flex h-auto w-full rounded-md overflow-hidden cursor-pointer bg-slate-800 hover:bg-slate-700 transition-colors relative"
                   >
-                    <div className="basis-20 grow-0 shrink-0 bg-white">
+                    <div className="basis-20 grow-0 shrink-0 bg-white relative">
                       <Image
+                        fill
                         src={HomerAlbum.src}
                         alt="Homer Photo Album Music"
                       />
@@ -186,8 +189,9 @@ export default function Home() {
                                 key={index}
                                 className="bg-zinc-900 p-3 rounded-lg grid gap-4 max-w-widthPhoto"
                               >
-                                <div className=" h-40 rounded-xl overflow-hidden bg-white grow-0 shrink-0">
+                                <div className=" h-40 rounded-xl overflow-hidden bg-white grow-0 shrink-0 relative">
                                   <Image
+                                    fill={true}
                                     src={EminemDaily.src}
                                     alt="Eminem Photo to Daily Mix"
                                   />
@@ -211,8 +215,12 @@ export default function Home() {
       </section>
       <footer className="h-auto p-3 flex justify-between items-center w-full px-5">
         <div className="flex items-center gap-3 flex-1">
-          <div className="basis-12 grow-0 shrink-0 h-12 flex-0 rounded-sm bg-white">
-            <Image src={MineMusicPhoto.src} alt="Mine Mine Mine Music !" />
+          <div className="basis-12 grow-0 shrink-0 h-12 flex-0 rounded-sm bg-white relative">
+            <Image
+              src={MineMusicPhoto.src}
+              fill={true}
+              alt="Mine Mine Mine Music !"
+            />
           </div>
           <div className="flex flex-col items-start">
             <p className="text-sm text-white font-semibold whitespace-nowrap ">
