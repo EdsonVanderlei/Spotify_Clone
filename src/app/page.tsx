@@ -31,8 +31,11 @@ import {
   IoIosArrowForward,
 } from "react-icons/io";
 import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 export default function Home() {
+  const isMenuMobile = useMediaQuery({ maxWidth: "1360px" });
+
   const [navBar, setNavBar] = useState(false);
 
   const handleScroll = (event: React.UIEvent<HTMLDivElement, UIEvent>) => {
@@ -48,42 +51,59 @@ export default function Home() {
     <main className="flex flex-col bg-black h-screen w-full">
       <section className="flex gap-2 flex-1 p-3">
         <aside className="flex flex-col gap-2 w-auto ">
-          <nav className="flex flex-col gap-1 p-4 bg-zinc-900 rounded-lg text-gray-400 font-bold">
+          <nav
+            className={`flex flex-col gap-4 p-4 bg-zinc-900 rounded-lg text-gray-400 font-bold ${
+              isMenuMobile ? "items-center" : ""
+            }`}
+          >
             <a className="flex gap-4 p-1 cursor-pointer items-center">
-              <GoHome size={24} /> Início
+              <GoHome size={24} />
+              {!isMenuMobile && <p> Início</p>}
             </a>
             <a className="flex gap-4 p-1 cursor-pointer items-center">
               <FiSearch size={24} />
-              Buscar
+              {!isMenuMobile && <p> Buscar</p>}
             </a>
           </nav>
-          <nav className="flex flex-col gap-3  flex-1 bg-zinc-900 rounded-lg p-4  w-full">
+          <nav
+            className={`flex flex-col gap-3  flex-1 bg-zinc-900 rounded-lg p-4  w-full ${
+              isMenuMobile ? "items-center" : ""
+            }`}
+          >
             <div className="flex justify-between text-gray-400 font-bold mb-6 px-2">
               <p className="flex items-center gap-2">
-                <LuLibrary size={24} /> Sua Biblioteca
+                <LuLibrary size={24} />
+                {!isMenuMobile && <p>Sua biblioteca</p>}
               </p>
-              <div className="flex gap-4">
-                <AiOutlinePlus className="cursor-pointer" size={20} />
-                <AiOutlineArrowRight className="cursor-pointer" size={20} />
-              </div>
+              {!isMenuMobile && (
+                <div className="flex gap-4">
+                  <AiOutlinePlus className="cursor-pointer" size={20} />
+                  <AiOutlineArrowRight className="cursor-pointer" size={20} />
+                </div>
+              )}
             </div>
-            <div className="flex gap-2 items-start text-white text-sm font-semibold">
-              <p className="rounded-2xl px-3 py-1 bg-zinc-700 whitespace-nowrap cursor-pointer">
-                Playlists
-              </p>
-              <p className="rounded-2xl px-3 py-1  bg-zinc-700 whitespace-nowrap cursor-pointer">
-                Podcasts e programas
-              </p>
-              <p className="rounded-2xl px-3 py-1 bg-zinc-700 whitespace-nowrap cursor-pointer">
-                Álbuns
-              </p>
-            </div>
-            <div className="flex justify-between items-center text-gray-400  px-2">
-              <FiSearch size={18} />
-              <p className="text-sm flex items-center gap-2 cursor-pointer">
-                Recentes <IoMdArrowDropdown size={20} />
-              </p>
-            </div>
+            {!isMenuMobile && (
+              <>
+                <div className="flex gap-2 items-start text-white text-sm font-semibold">
+                  <p className="rounded-2xl px-3 py-1 bg-zinc-700 whitespace-nowrap cursor-pointer">
+                    Playlists
+                  </p>
+                  <p className="rounded-2xl px-3 py-1  bg-zinc-700 whitespace-nowrap cursor-pointer">
+                    Podcasts e programas
+                  </p>
+                  <p className="rounded-2xl px-3 py-1 bg-zinc-700 whitespace-nowrap cursor-pointer">
+                    Álbuns
+                  </p>
+                </div>
+                <div className="flex justify-between items-center text-gray-400  px-2">
+                  <FiSearch size={18} />
+                  <p className="text-sm flex items-center gap-2 cursor-pointer">
+                    Recentes <IoMdArrowDropdown size={20} />
+                  </p>
+                </div>
+              </>
+            )}
+
             <nav className="">
               {Array(5)
                 .fill(0)
@@ -91,26 +111,31 @@ export default function Home() {
                   return (
                     <div
                       key={index}
-                      className="flex gap-2 px-3 py-2 hover:bg-gray-800 rounded-md cursor-pointer w-full"
+                      className="flex gap-2  items-center px-3 py-2 hover:bg-gray-800 rounded-md cursor-pointer w-full"
                     >
-                      <div className="basis-12 grow-0 shrink-0 h-12 flex-0 rounded-sm overflow-hidden relative">
+                      <div className="h-12 w-12 shrink-0  rounded-sm overflow-hidden relative">
                         <Image
                           fill={true}
                           src={HomerAlbum.src}
                           alt="Homer Photo Album Music"
                         />
                       </div>
-                      <div className="flex justify-between items-center w-full ">
-                        <div className="flex flex-col ">
-                          <p className="text-white whitespace-nowrap">
-                            Lucas + Lucas + Edson
-                          </p>
-                          <p className="text-zinc-700 text-sm">
-                            Playlist spotify
-                          </p>
+                      {!isMenuMobile && (
+                        <div className="flex justify-between items-center w-full gap-24 ">
+                          <div className="flex flex-col ">
+                            <p className="text-white whitespace-nowrap">
+                              Lucas + Lucas + Edson
+                            </p>
+                            <p className="text-zinc-700 text-sm">
+                              Playlist spotify
+                            </p>
+                          </div>
+                          <BsSoundwave
+                            className="text-green-500 ml-8"
+                            size={24}
+                          />
                         </div>
-                        <BsSoundwave className="text-green-500" size={24} />
-                      </div>
+                      )}
                     </div>
                   );
                 })}
@@ -139,7 +164,7 @@ export default function Home() {
               <div className="basis-6 grow-0 shrink-0 h-6 rounded-full bg-white"></div>
             </div>
           </div>
-          <section className="p-5 grid gap-5 h-[calc(100vh-200px)] overflow-y-auto">
+          <section className="p-5 grid gap-5 h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden">
             <p className="text-3xl text-white font-bold">Boa noite</p>
             <div className="grid grid-cols-albuns gap-6">
               {Array(6)
@@ -149,7 +174,7 @@ export default function Home() {
                     key={index}
                     className="flex h-auto w-full rounded-md overflow-hidden cursor-pointer bg-slate-800 hover:bg-slate-700 transition-colors relative"
                   >
-                    <div className="basis-20 grow-0 shrink-0 bg-white relative">
+                    <div className="w-20 grow-0 shrink-0 bg-white relative">
                       <Image
                         fill
                         src={HomerAlbum.src}
@@ -187,7 +212,7 @@ export default function Home() {
                             return (
                               <div
                                 key={index}
-                                className="bg-zinc-900 p-3 rounded-lg grid gap-4 max-w-widthPhoto"
+                                className="bg-zinc-900 p-3 rounded-lg grid basis-48 shrink-0 grow-0 gap-4 max-w-widthPhoto"
                               >
                                 <div className=" h-40 rounded-xl overflow-hidden bg-white grow-0 shrink-0 relative">
                                   <Image

@@ -14,8 +14,9 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       gridTemplateColumns: {
-        albuns: "repeat(auto-fit, minmax(400px, 1fr))",
+        albuns: "repeat(auto-fit, minmax(300px, 1fr))",
       },
+      screens: {},
     },
   },
   plugins: [],
