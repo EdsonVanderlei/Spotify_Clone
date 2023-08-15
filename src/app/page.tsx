@@ -113,7 +113,7 @@ export default function Home() {
                       key={index}
                       className="flex gap-2  items-center px-3 py-2 hover:bg-gray-800 rounded-md cursor-pointer w-full"
                     >
-                      <div className="h-12 w-12 shrink-0  rounded-sm overflow-hidden relative">
+                      <div className="h-12 w-12  shrink-0  rounded-sm overflow-hidden relative">
                         <Image
                           fill={true}
                           src={HomerAlbum.src}
@@ -159,12 +159,44 @@ export default function Home() {
                 <IoIosArrowForward className="text-white text-xl " />
               </div>
             </div>
+
             <div className="flex items-center gap-3 flex-1 justify-end">
               <div className="basis-6 grow-0 shrink-0 h-6 rounded-full bg-white"></div>
               <div className="basis-6 grow-0 shrink-0 h-6 rounded-full bg-white"></div>
             </div>
           </div>
           <section className="p-5 grid gap-5 h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden">
+            <div className="w-auto px-4 flex items-center py-6 gap-4 bg-gradient-to-bl from-slate-900 rounded-xl via-zinc-900 to-black">
+              <div className="w-48 h-[calc(100%-10px)] bg-white shrink-0 rounded-lg "></div>
+              <div className="flex items-start">
+                <div className="flex flex-col justify-start ">
+                  <p className="text-white text-xs font-semibold mb-3">ÁLBUM</p>
+                  <div className="grid gap-2">
+                    <p className="text-white font-bold text-7xl">
+                      Tamborzão Raiz: Vol 2
+                    </p>
+                    <p className="text-white text-xs font-semibold">
+                      MC Kevin o Chris
+                    </p>
+                    <p className="text-white">
+                      'Tamborzão Raiz: Vol2' de Mc Kevin O Chris. Ouça agora!
+                    </p>
+                    <div className="flex gap-2 items-center">
+                      <p className="text-black bg-green-500  px-8 py-3 rounded-3xl">
+                        Play
+                      </p>
+                      <p className="border-solid border-2 text-white border-white px-8 py-3 rounded-3xl">
+                        Salvar
+                      </p>
+                      <p className="text-white tracking-wider">...</p>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-white p-2 rounded-3xl bg-zinc-900 font-bold text-sm">
+                  Ocultar Propagandas
+                </p>
+              </div>
+            </div>
             <p className="text-3xl text-white font-bold">Boa noite</p>
             <div className="grid grid-cols-albuns gap-6">
               {Array(6)
