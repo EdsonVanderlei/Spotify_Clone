@@ -165,7 +165,7 @@ export default function Home() {
               <div className="basis-6 grow-0 shrink-0 h-6 rounded-full bg-white"></div>
             </div>
           </div>
-          <section className="p-5 grid gap-5 h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden">
+          <section className="p-5 grid justify-items-center gap-5 h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden">
             <div className="w-auto px-4 flex items-center py-6 gap-4 bg-gradient-to-bl from-slate-900 rounded-xl via-zinc-900 to-black">
               <div className="w-48 h-[calc(100%-10px)] bg-white shrink-0 rounded-lg "></div>
               <div className="flex items-start">
@@ -192,43 +192,46 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <p className="text-white p-2 rounded-3xl bg-zinc-900 font-bold text-sm">
+                <p className="text-white p-2 rounded-3xl bg-black font-bold text-sm">
                   Ocultar Propagandas
                 </p>
               </div>
             </div>
-            <p className="text-3xl text-white font-bold">Boa noite</p>
-            <div className="grid grid-cols-albuns gap-6">
-              {Array(6)
-                .fill("x")
-                .map((_, index) => (
-                  <div
-                    key={index}
-                    className="flex h-auto w-full rounded-md overflow-hidden cursor-pointer bg-slate-800 hover:bg-slate-700 transition-colors relative"
-                  >
-                    <div className="w-20 grow-0 shrink-0 bg-white relative">
-                      <Image
-                        fill
-                        src={HomerAlbum.src}
-                        alt="Homer Photo Album Music"
-                      />
+            <section className="w-full grid gap-3 mb-6">
+              <p className="text-3xl text-white font-bold">Boa noite</p>
+              <div className="grid grid-cols-3 gap-6">
+                {Array(6)
+                  .fill("x")
+                  .map((_, index) => (
+                    <div
+                      key={index}
+                      className="flex h-auto w-full rounded-md overflow-hidden cursor-pointer bg-slate-800 hover:bg-slate-700 transition-colors relative"
+                    >
+                      <div className="w-20 grow-0 shrink-0 bg-white relative">
+                        <Image
+                          fill
+                          src={HomerAlbum.src}
+                          alt="Homer Photo Album Music"
+                        />
+                      </div>
+                      <div className="flex items-center justify-between flex-1  px-4 py-4">
+                        <p className="text-white">Lucas + Lucas + Edson</p>
+                        <AiFillPauseCircle
+                          size={48}
+                          className="text-green-black"
+                        />
+                      </div>
                     </div>
-                    <div className="flex items-center justify-between flex-1  px-4 py-4">
-                      <p className="text-white">Lucas + Lucas + Edson</p>
-                      <AiFillPauseCircle
-                        size={48}
-                        className="text-green-black"
-                      />
-                    </div>
-                  </div>
-                ))}
-            </div>
+                  ))}
+              </div>
+            </section>
+
             <section className="grid gap-7">
               {Array(6)
                 .fill("x")
                 .map((_, index) => {
                   return (
-                    <section key={index} className="flex flex-col gap- jus">
+                    <section key={index} className="flex flex-col gap-4 ">
                       <div className="flex justify-between w-full items-center">
                         <p className="text-white text-2xl font-bold">
                           Feito para Edson Vanderlei
