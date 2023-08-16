@@ -17,6 +17,9 @@ const config: Config = {
         albuns: "repeat(auto-fit, minmax(300px, 1fr))",
       },
       screens: {},
+      borderWidth: {
+        1: "1px",
+      },
     },
   },
   plugins: [],
