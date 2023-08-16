@@ -3,8 +3,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { useMediaQuery } from "react-responsive";
-import NavSide from "./Components/NavSide";
-import Footer from "./Components/Footer";
+import NavSide from "../Components/NavSide";
+import Footer from "../Components/Footer";
 
 export const metadata: Metadata = {
   title: "Spotify",
