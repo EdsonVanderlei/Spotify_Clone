@@ -76,7 +76,11 @@ const NavSide = ({ isMenuMobile }: { isMenuMobile: boolean }) => {
           </>
         )}
 
-        <nav className="">
+        <nav
+          className={` overflow-y-auto overflow-x-hidden rounded-lg ${
+            isMenuMobile ? "h-[calc(100vh-300px)]" : " h-[calc(100vh-390px)]"
+          }`}
+        >
           {Array(5)
             .fill(0)
             .map((_, index) => {

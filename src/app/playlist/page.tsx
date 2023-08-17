@@ -10,14 +10,24 @@ import {
   IoIosArrowForward,
   IoMdArrowDropdown,
 } from "react-icons/io";
+import useFixed from "@/hooks/useFixed";
+import { useRef } from "react";
 
 const PlayList = () => {
+  const parent = useRef<HTMLDivElement>(null);
+  const child = useRef<HTMLDivElement>(null);
+  useFixed({ parent, child });
+
   return (
     <Layout>
       <section className="flex gap-2 flex-1 rounded-lg overflow-hidden w-full">
-        <div className="flex-1 flex flex-col  h-[calc(100vh-100px)] overflow-y-auto overflow-x-hidden ">
+        <div
+          ref={parent}
+          className="flex-1 flex flex-col  h-[calc(100vh-100px)] overflow-y-auto overflow-x-hidden relative"
+        >
           <div
-            className={`flex w-full justify-between items-center fixed top-6 z-20  bg-transparent px-5`}
+            ref={child}
+            className={`flex w-full justify-between items-center absolute top-5 z-20  bg-transparent px-5`}
           >
             <div className="flex items-center gap-3 flex-1 ">
               <div className="bg-black cursor-pointer flex items-center justify-center rounded-full w-8 h-8  shrink-0">
@@ -28,8 +38,8 @@ const PlayList = () => {
               </div>
             </div>
             <div className="flex items-center gap-3 flex-1 justify-end">
-              <div className="basis-6 grow-0 shrink-0 h-6 rounded-full bg-white"></div>
-              <div className="basis-6 grow-0 shrink-0 h-6 rounded-full bg-white"></div>
+              <div className="w-6 shrink-0 h-6 rounded-full bg-white"></div>
+              <div className="w-6 shrink-0 h-6 rounded-full bg-white"></div>
             </div>
           </div>
           <section className="grid gap-3 content-start bg-gray-900">

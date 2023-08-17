@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="flex flex-col bg-black h-screen w-full p-3">
+        <main className="flex flex-col bg-black h-screen w-full p-3 overflow-hidden">
           <div className="flex gap-2 flex-1">
             <NavSide isMenuMobile={isMenuMobile} />
             {children}
